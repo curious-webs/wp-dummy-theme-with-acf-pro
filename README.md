@@ -14,7 +14,7 @@ This is basic wordpress theme with acf pro settings for developers to get start 
 * Pagination and Load More
 * Search form and template
 * Ajax Support
-* ACF repeater, options page, relationship field, blocks
+* ACF repeater, options page, relationship field, blocks( all implemented in templates/service-list.php)
 * ACF Repeater Pagination
 
 
