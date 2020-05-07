@@ -32,7 +32,7 @@ This is basic wordpress theme with acf pro settings for developers to get start 
 * [Contact Form 7](https://wordpress.org/plugins/contact-form-7/) - For Contact Form 
 * [NS Featured Post](https://wordpress.org/plugins/ns-featured-posts/) - For Featured posts displaying on home page
 * [Yoast SEO](https://wordpress.org/plugins/wordpress-seo/) - Used for seo purposes
-* [Duplicate Page](https://wordpress.org/plugins/duplicate-page/) -  To duplicate pages
+* [Duplicate Page](https://wordpress.org/plugins/duplicate-page/) -  If Required (To duplicate pages)
 * [CPT UI](https://wordpress.org/plugins/custom-post-type-ui/) - If Required (for creating custom post types and taxonomies)
 * [ACF Pro](https://www.advancedcustomfields.com/pro/) - For Creating options and fields 
 
