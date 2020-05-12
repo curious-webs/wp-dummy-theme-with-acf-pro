@@ -146,6 +146,8 @@ function register_my_menu() {
 }
 
 add_action('init', 'register_my_menu');
+
+
 /* * **
  * Widgets
  */
@@ -223,6 +225,26 @@ function wpdocs_theme_name_scripts() {
 }
 
 add_action('wp_enqueue_scripts', 'wpdocs_theme_name_scripts');
+
+/***
+ * Disable Version Cache
+ */
+
+remove_action('wp_head', 'wp_generator'); // remove version from head
+
+
+add_filter('the_generator', '__return_empty_string'); // remove version from rss
+
+
+function remove_version_scripts_styles($src) { // remove version from scripts and styles
+    if (strpos($src, 'ver=')) {
+        $src = remove_query_arg('ver', $src);
+    }
+    return $src;
+}
+add_filter('style_loader_src', 'remove_version_scripts_styles', 9999);
+add_filter('script_loader_src', 'remove_version_scripts_styles', 9999)
+
 
 
 /* * *
