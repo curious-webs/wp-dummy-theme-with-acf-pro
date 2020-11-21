@@ -30,10 +30,17 @@ if (!class_exists('WP_Bootstrap_Navwalker')) {
                 $n = "\n";
             }
             $indent = str_repeat($t, $depth);
-            $display_depth = ( $depth + 1); 
             // Default class to add to the file.
+            
+      $display_depth = ( $depth + 1); 
+          
             $classes = array('dropdown-menu',( $display_depth == 3  ? 'level-third-menu' : 'menu-odd' ), 
                 'menu-depth-' . $display_depth);
+       
+            
+            
+            
+            
             /**
              * Filters the CSS class(es) applied to a menu list element.
              *
@@ -45,7 +52,6 @@ if (!class_exists('WP_Bootstrap_Navwalker')) {
              */
             $class_names = join(' ', apply_filters('nav_menu_submenu_css_class', $classes, $args, $depth));
             $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
-            
             /**
              * The `.dropdown-menu` container needs to have a labelledby
              * attribute which points to it's trigger link.
@@ -139,7 +145,7 @@ if (!class_exists('WP_Bootstrap_Navwalker')) {
              */
             $id = apply_filters('nav_menu_item_id', 'menu-item-' . $item->ID, $item, $args, $depth);
             $id = $id ? ' id="' . esc_attr($id) . '"' : '';
-            $output .= $indent . '<li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement"' . $id . $class_names . '>';
+            $output .= $indent . '<li role="menuitem" itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement"' . $id . $class_names . '>';
             // initialize array for holding the $atts for the link item.
             $atts = array();
             // Set title from item to the $atts array - if title is empty then
@@ -154,15 +160,15 @@ if (!class_exists('WP_Bootstrap_Navwalker')) {
             // If item has_children add atts to <a>.
             if (isset($args->has_children) && $args->has_children && 0 === $depth && $args->depth > 1) {
                 //$atts['href'] = '#';
-                // $atts['data-toggle'] = 'dropdown';
-                $atts['href'] = !empty($item->url) ? $item->url : '';
+               // $atts['data-toggle'] = 'dropdown';
+                 $atts['href']          = ! empty( $item->url ) ? $item->url : '';
                 $atts['data-hover'] = 'dropdown';
                 $atts['aria-haspopup'] = 'true';
                 $atts['aria-expanded'] = 'false';
                 $atts['class'] = 'dropdown-toggle nav-link';
                 $atts['id'] = 'menu-item-dropdown-' . $item->ID;
             } else {
-                $atts['href'] = !empty($item->url) ? $item->url : '#';
+                $atts['href'] = !empty($item->url) ? $item->url : '#'; 
                 // Items in dropdowns use .dropdown-item instead of .nav-link.
                 if ($depth > 0) {
                     $atts['class'] = 'dropdown-item';
@@ -326,7 +332,7 @@ if (!class_exists('WP_Bootstrap_Navwalker')) {
                     $fallback_output .= ' class="' . esc_attr($menu_class) . '"';
                 }
                 $fallback_output .= '>';
-                $fallback_output .= '<li class="nav-item"><a href="' . esc_url(admin_url('nav-menus.php')) . '" class="nav-link" title="' . esc_attr__('Add a menu', 'wp-bootstrap-navwalker') . '">' . esc_html__('Add a menu', 'wp-bootstrap-navwalker') . '</a></li>';
+                $fallback_output .= '<li role="menuitem" class="nav-item"><a href="' . esc_url(admin_url('nav-menus.php')) . '" class="nav-link" title="' . esc_attr__('Add a menu', 'wp-bootstrap-navwalker') . '">' . esc_html__('Add a menu', 'wp-bootstrap-navwalker') . '</a></li>';
                 $fallback_output .= '</ul>';
                 if ($container) {
                     $fallback_output .= '</' . esc_attr($container) . '>';
@@ -438,10 +444,10 @@ if (!class_exists('WP_Bootstrap_Navwalker')) {
                         if ('disabled' === $link_class) {
                             // Convert link to '#' and unset open targets.
                             $atts['href'] = '#';
-                            unset($atts['target']);
+                          unset($atts['target']);
                         } elseif ('dropdown-header' === $link_class || 'dropdown-divider' === $link_class || 'dropdown-item-text' === $link_class) {
                             // Store a type flag and unset href and target.
-                            unset($atts['href']);
+                           unset($atts['href']);
                             unset($atts['target']);
                         }
                     }
